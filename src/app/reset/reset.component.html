@@ -1,0 +1,56 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+
+    <div class ='form-group'>
+
+
+        <label for="applicationName">Application Name </label>
+        <select formControlName="applicationName" (change)="onApplicationChange()">
+
+            <select value="">Select an Application</select>
+            <option *ngFor="let name of applicationNames" [value]="name">{{name}}</option>
+            
+            </select>
+    </div>
+
+
+    <div class="form-group" *ngIf="selectedApplicationName">
+
+        <label for="hostname">Host Name</label>
+        <select formControlName="hostname" (change)="onHostnameChange()">
+            
+        
+        <option value="">Select a hostname</option> 
+           <option *ngFor="let hostname of hostnames[selectedApplicationName]" [value]="hostname">
+
+                {{hostname}}
+        </option>
+        
+        
+    </select>
+                
+            </div>
+        
+        
+        
+        
+        
+            <div class="form-group" *ngIf="selectedApplicationName">
+        
+                <label for="dbName">DB Name</label>
+                <select formControlName="dbName">
+                
+                <option value="">Select a hostname</option>
+                <option *ngFor="let dbName of dbNames[selectedApplicationName]" [value]="dbName">
+                
+                    {{dbName}}
+                </option>
+                
+                </select>
+                
+                
+            </div>
+
+            <button type="submit"> Submit</button>
+
+</form>
